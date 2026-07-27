@@ -63,8 +63,95 @@
 # - Handle invalid menu choices gracefully.
 #
 
-#
-# =============================================================================
-# YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
-# =============================================================================
+
+def add(a: float, b: float) -> float:
+    return a + b
+
+
+def subtract(a: float, b: float) -> float:
+    return a - b
+
+
+def multiply(a: float, b: float) -> float:
+    return a * b
+
+
+def divide(a: float, b: float) -> float | None:
+    if b == 0:
+        return None
+    return a / b
+
+
+def modulus(a: float, b: float) -> float | None:
+    if b == 0:
+        return None
+    return a % b
+
+
+def exponent(a: float, b: float) -> float:
+    return a ** b
+
+
+def display_menu() -> None:
+    print("============================")
+    print("     SIMPLE CALCULATOR")
+    print("============================")
+    print("1. Addition")
+    print("2. Subtraction")
+    print("3. Multiplication")
+    print("4. Division")
+    print("5. Modulus")
+    print("6. Exponentiation")
+    print("7. Quit")
+
+
+def get_number(prompt: str) -> float | None:
+    try:
+        return float(input(prompt))
+    except ValueError:
+        print("Error: Please enter a valid number.")
+        return None
+
+
+if __name__ == "__main__":
+    while True:
+        display_menu()
+        choice = input("Select an operation (1-7): ").strip()
+        if choice == "7":
+            print("Goodbye!")
+            break
+
+        first = get_number("Enter first number : ")
+        if first is None:
+            continue
+        second = get_number("Enter second number: ")
+        if second is None:
+            continue
+
+        if choice == "1":
+            result = add(first, second)
+            print(f"Result: {first} + {second} = {result}")
+        elif choice == "2":
+            result = subtract(first, second)
+            print(f"Result: {first} - {second} = {result}")
+        elif choice == "3":
+            result = multiply(first, second)
+            print(f"Result: {first} * {second} = {result}")
+        elif choice == "4":
+            result = divide(first, second)
+            if result is None:
+                print("Error: Cannot divide by zero.")
+            else:
+                print(f"Result: {first} / {second} = {result:.2f}")
+        elif choice == "5":
+            result = modulus(first, second)
+            if result is None:
+                print("Error: Cannot divide by zero.")
+            else:
+                print(f"Result: {first} % {second} = {result}")
+        elif choice == "6":
+            result = exponent(first, second)
+            print(f"Result: {first} ** {second} = {result}")
+        else:
+            print("Invalid choice. Please enter a number between 1 and 7.")
 
